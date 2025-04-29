@@ -1,6 +1,5 @@
 import streamlit as st
 import random
-from PIL import Image
 
 st.set_page_config(page_title="Detektif Sel", layout="wide")
 st.title("🕵️‍♂️ Detektif Sel: Klasifikasi Misteri!")
@@ -10,24 +9,33 @@ Kamu adalah seorang detektif biologi! Beberapa gambar sel ditemukan di laborator
 Tugasmu adalah mengamati ciri-cirinya, lalu menebak apakah itu **Sel Hewan**, **Sel Tumbuhan**, atau **Bakteri**.
 """)
 
-# Data sel misterius (gunakan gambar lokal)
+# Data sel misterius
 cells = [
     {
         "id": 1,
-        "image": "file-MGgkK72KyR447airHxeizf",  # file ID yang kamu upload
+        "image": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Animal_cell_structure-en.svg",
         "choices": ["Tidak punya dinding sel", "Ada mitokondria", "Bentuk tidak tetap"],
         "answer": "hewan"
     },
-    # Tambahkan sel lain jika kamu punya gambar lainnya
+    {
+        "id": 2,
+        "image": "https://upload.wikimedia.org/wikipedia/commons/3/30/Plant_cell_structure-en.svg",
+        "choices": ["Ada kloroplas", "Punya dinding sel", "Ada vakuola besar"],
+        "answer": "tumbuhan"
+    },
+    {
+        "id": 3,
+        "image": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Prokaryote_cell_diagram.svg",
+        "choices": ["Tidak punya inti sel", "Bentuk batang", "Punya pili dan flagela"],
+        "answer": "bakteri"
+    }
 ]
 
+# Pilih sel secara acak
 sel = random.choice(cells)
 
-# Tampilkan gambar
-img = Image.open(f"/mnt/data/{sel['image']}")
-st.image(img, caption="🔬 Perhatikan gambar sel ini!", width=500)
-
-# Interaktif
+# Tampilkan gambar dan pilihan
+st.image(sel["image"], caption="🔬 Perhatikan gambar sel ini!", use_container_width=True)
 st.subheader("Apa ciri-ciri yang kamu lihat?")
 selected = st.multiselect("Pilih semua ciri yang cocok:", sel["choices"])
 
