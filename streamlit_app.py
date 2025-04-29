@@ -1,48 +1,51 @@
 import streamlit as st
+import random
 
-st.set_page_config(page_title="Escape Room: Jelajahi Dunia Sel", layout="wide")
+st.set_page_config(page_title="Detektif Sel", layout="wide")
+st.title("🕵️‍♂️ Detektif Sel: Klasifikasi Misteri!")
 
-st.title("🧬 Escape Room: Jelajahi Dunia Sel")
 st.markdown("""
-Kamu terjebak di dalam sebuah sel! Untuk keluar, kamu harus memecahkan teka-teki yang berkaitan dengan struktur dan fungsi organel.
-Setiap jawaban benar akan membawamu lebih dekat ke pintu keluar!
+Kamu adalah seorang detektif biologi! Beberapa gambar sel ditemukan di laboratorium misterius.
+Tugasmu adalah mengamati ciri-cirinya, lalu menebak apakah itu **Sel Hewan**, **Sel Tumbuhan**, atau **Bakteri**.
 """)
 
-# Level 1: Pintu Nukleus
-st.header("Level 1: Pintu Nukleus")
-q1 = st.text_input("Aku adalah pusat pengendali semua aktivitas dalam sel. Siapakah aku?").strip().lower()
-if q1:
-    if "nukleus" in q1:
-        st.success("Benar! Kamu telah membuka pintu pertama dan memasuki sitoplasma...")
+# Data sel misterius
+cells = [
+    {
+        "id": 1,
+        "image": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Animal_cell_structure-en.svg",
+        "choices": ["Tidak punya dinding sel", "Ada mitokondria", "Bentuk tidak tetap"],
+        "answer": "hewan"
+    },
+    {
+        "id": 2,
+        "image": "https://upload.wikimedia.org/wikipedia/commons/3/30/Plant_cell_structure-en.svg",
+        "choices": ["Ada kloroplas", "Punya dinding sel", "Ada vakuola besar"],
+        "answer": "tumbuhan"
+    },
+    {
+        "id": 3,
+        "image": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Prokaryote_cell_diagram.svg",
+        "choices": ["Tidak punya inti sel", "Bentuk batang", "Punya pili dan flagela"],
+        "answer": "bakteri"
+    }
+]
 
-        # Level 2: Mitokondria
-        st.header("Level 2: Mitokondria")
-        q2 = st.text_input("Aku menghasilkan energi untuk sel, bagaikan pembangkit tenaga. Siapakah aku?").strip().lower()
-        if q2:
-            if "mitokondria" in q2:
-                st.success("Bagus! Energi kamu cukup untuk melanjutkan ke organel berikutnya...")
+sel = random.choice(cells)
+st.image(sel["image"], caption="Perhatikan gambar sel ini!", use_column_width=True)
+st.subheader("Apa ciri-ciri yang kamu lihat?")
 
-                # Level 3: Ribosom
-                st.header("Level 3: Ribosom")
-                q3 = st.text_input("Aku membantu membuat protein. Aku bisa bebas atau menempel di RE kasar. Siapakah aku?").strip().lower()
-                if q3:
-                    if "ribosom" in q3:
-                        st.success("Hebat! Protein sudah cukup untuk bertahan hidup...")
+selected = st.multiselect("Pilih semua ciri yang cocok:", sel["choices"])
 
-                        # Level 4: Gerbang Membran Sel
-                        st.header("Level 4: Gerbang Membran Sel")
-                        q4 = st.text_input("Aku menjaga keluar masuknya zat. Aku adalah pelindung utama sel. Siapakah aku?").strip().lower()
-                        if q4:
-                            if "membran sel" in q4 or "membran" in q4:
-                                st.balloons()
-                                st.success("Selamat! Kamu berhasil keluar dari sel! Sekarang kamu bebas!")
-                            else:
-                                st.error("Jawaban belum tepat. Coba lagi!")
-                    else:
-                        st.error("Jawaban kurang tepat. Coba lagi!")
-            else:
-                st.error("Bukan itu organelnya. Coba lagi!")
-    else:
-        st.error("Masih salah. Coba pikirkan siapa yang mengatur sel!")
+if selected:
+    st.subheader("Menurut kamu, jenis sel ini apa?")
+    guess = st.radio("Jawaban kamu:", ["hewan", "tumbuhan", "bakteri"])
+
+    if st.button("Periksa Jawaban"):
+        if guess == sel["answer"]:
+            st.success("Tepat! Kamu memang detektif sel yang hebat.")
+            st.balloons()
+        else:
+            st.error(f"Belum tepat. Ini sebenarnya adalah sel {sel['answer'].capitalize()}.")
 else:
-    st.info("Masukkan jawabanmu untuk mulai permainan.")
+    st.info("Pilih dulu ciri-ciri yang kamu amati dari gambar di atas.")
