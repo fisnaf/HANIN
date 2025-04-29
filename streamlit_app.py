@@ -1,26 +1,6 @@
 import streamlit as st
 import random
 
-# Tambahkan CSS untuk tema latar belakang
-st.markdown(
-    """
-    <style>
-    .stApp {
-        background-image: url('https://images.unsplash.com/photo-1581090700227-1e8e7b47f1ed');
-        background-size: cover;
-        background-attachment: fixed;
-        color: white;
-    }
-    .css-18e3th9, .css-1d391kg, .css-1kyxreq, .css-ffhzg2 {
-        background-color: rgba(0, 0, 0, 0.6) !important;
-        border-radius: 10px;
-        padding: 10px;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # Judul aplikasi
 st.title("Pembelajaran Biologi SMA Kelas 11: Sel")
 
