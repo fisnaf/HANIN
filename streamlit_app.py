@@ -1,9 +1,10 @@
 import streamlit as st
 
-# Halaman utama
+# Konfigurasi halaman
 st.set_page_config(page_title="Belajar Sel - Biologi SMA", layout="wide")
 st.title("Platform Belajar Interaktif - Materi Sel Biologi Kelas 11")
 
+# Sidebar menu
 menu = st.sidebar.radio("Pilih Menu", ["Materi", "Kuis"])
 
 if menu == "Materi":
@@ -22,77 +23,93 @@ if menu == "Materi":
 
     if subbab == "Pengertian Sel":
         st.subheader("Pengertian Sel")
-        st.write("""
-        Sel adalah unit struktural dan fungsional terkecil dari makhluk hidup.
-        Semua makhluk hidup terdiri atas satu atau lebih sel.
-        """)
+        st.write("Sel adalah unit struktural dan fungsional terkecil dari makhluk hidup.")
 
     elif subbab == "Sejarah Penemuan Sel":
         st.subheader("Sejarah Penemuan Sel")
-        st.write("""
-        Konsep sel pertama kali ditemukan oleh Robert Hooke pada tahun 1665.
-        Ia mengamati irisan tipis gabus dengan mikroskop dan melihat struktur kotak-kotak.
-        """)
+        st.write("Robert Hooke pada tahun 1665 pertama kali mengamati sel melalui mikroskop.")
 
     elif subbab == "Teori Sel":
         st.subheader("Teori Sel")
-        st.write("""
-        1. Sel adalah unit struktural semua makhluk hidup.
-        2. Sel adalah unit fungsional terkecil kehidupan.
-        3. Semua sel berasal dari sel yang sudah ada sebelumnya.
-        """)
+        st.write(\"\"\"1. Sel adalah unit struktural semua makhluk hidup.
+2. Sel adalah unit fungsional terkecil kehidupan.
+3. Semua sel berasal dari sel yang sudah ada sebelumnya.\"\"\")
 
     elif subbab == "Perbedaan Prokariotik dan Eukariotik":
         st.subheader("Perbedaan Prokariotik dan Eukariotik")
-        st.write("""
-        | Ciri-ciri | Sel Prokariotik | Sel Eukariotik |
-        |-----------|------------------|------------------|
-        | Inti Sel  | Tidak ada        | Ada              |
-        | Organel   | Tidak kompleks   | Kompleks         |
-        | Contoh    | Bakteri          | Hewan, Tumbuhan  |
-        """)
+        st.table({
+            "Ciri-ciri": ["Inti Sel", "Organel", "Contoh"],
+            "Sel Prokariotik": ["Tidak ada", "Tidak kompleks", "Bakteri"],
+            "Sel Eukariotik": ["Ada", "Kompleks", "Hewan, Tumbuhan"]
+        })
 
     elif subbab == "Struktur Sel Tumbuhan dan Hewan":
         st.subheader("Struktur Sel Tumbuhan dan Hewan")
-        st.write("""
-        Sel tumbuhan memiliki dinding sel dan kloroplas, sedangkan sel hewan tidak.
-        Sel hewan memiliki sentriol yang tidak dimiliki sel tumbuhan.
-        """)
+        st.write("Sel tumbuhan memiliki dinding sel dan kloroplas, sedangkan sel hewan tidak.")
 
     elif subbab == "Organel-organel Sel":
         st.subheader("Organel-organel Sel dan Fungsinya")
-        st.write("""
-        - Nukleus: Mengontrol aktivitas sel
-        - Mitokondria: Respirasi sel
-        - Ribosom: Sintesis protein
-        - Retikulum endoplasma: Transportasi zat
-        - Badan Golgi: Modifikasi dan pengemasan protein
-        - Lisosom: Pencernaan intraseluler
-        """)
+        st.write(\"\"\"- Nukleus: Mengontrol aktivitas sel
+- Mitokondria: Respirasi sel
+- Ribosom: Sintesis protein
+- RE: Transportasi zat
+- Badan Golgi: Modifikasi dan pengemasan protein
+- Lisosom: Pencernaan intraseluler\"\"\")
 
     elif subbab == "Transportasi Membran":
         st.subheader("Transportasi Membran")
-        st.write("""
-        Transportasi membran meliputi difusi, osmosis, transport aktif, dan endositosis.
-        """)
+        st.write("Meliputi difusi, osmosis, transport aktif, endositosis, dan eksositosis.")
 
     elif subbab == "Pembelahan Sel (Mitosis & Meiosis)":
         st.subheader("Pembelahan Sel")
-        st.write("""
-        - Mitosis: untuk pertumbuhan dan regenerasi
-        - Meiosis: untuk pembentukan gamet
-        """)
+        st.write(\"\"\"- Mitosis: pertumbuhan & perbaikan
+- Meiosis: pembentukan gamet dengan pengurangan jumlah kromosom.\"\"\")
 
     elif subbab == "Sintesis Protein":
         st.subheader("Sintesis Protein")
-        st.write("""
-        Proses dimulai dari transkripsi (DNA ke mRNA) lalu translasi (mRNA ke protein).
-        """)
+        st.write("Transkripsi (DNA → mRNA) lalu Translasi (mRNA → Protein di ribosom).")
 
 elif menu == "Kuis":
     st.header("Kuis Interaktif Biologi - Materi Sel")
-    st.write("Silakan pilih level untuk memulai kuis.")
-    # Placeholder untuk level kuis
     level = st.selectbox("Pilih Level", ["Level 1", "Level 2", "Level 3", "Level 4", "Level 5"])
 
-    st.info("Fitur kuis akan segera ditambahkan dengan total 50 soal dan penilaian per level.")
+    def tampilkan_kuis(soal_list):
+        score = 0
+        jawaban_benar = []
+        for i, (soal, benar, pilihan) in enumerate(soal_list):
+            st.markdown(f"**{i+1}. {soal}**")
+            jawaban = st.radio("Jawaban kamu:", pilihan, key=i)
+            if jawaban == benar:
+                score += 1
+                jawaban_benar.append(True)
+            else:
+                jawaban_benar.append(False)
+
+        if st.button("Submit Jawaban"):
+            st.success(f"Skor kamu: {score}/{len(soal_list)}")
+            if score >= 7:
+                st.balloons()
+                st.info("Selamat! Kamu bisa lanjut ke level berikutnya.")
+            else:
+                st.warning("Kamu belum lulus. Coba ulangi lagi ya!")
+
+    soal_per_level = {
+        "Level 1": [
+            ("Apa unit terkecil kehidupan?", "Sel", ["Jaringan", "Sel", "Organ", "Sistem organ"]),
+            ("Siapa penemu istilah 'sel'?", "Robert Hooke", ["Schwann", "Schleiden", "Virchow", "Robert Hooke"]),
+            ("Sel prokariotik tidak memiliki...", "Inti sejati", ["Sitoplasma", "Inti sejati", "DNA", "Membran sel"]),
+            ("Organel pusat kontrol sel adalah...", "Nukleus", ["Nukleus", "Lisosom", "RE", "Mitokondria"]),
+            ("Sel tumbuhan memiliki...", "Dinding sel", ["Sentriol", "Lisosom", "Dinding sel", "Flagela"]),
+            ("Transkripsi terjadi di...", "Inti sel", ["Sitoplasma", "RE", "Inti sel", "Ribosom"]),
+            ("RE kasar berperan dalam...", "Sintesis protein", ["Respirasi", "Sintesis protein", "Pencernaan", "Duplikasi DNA"]),
+            ("Meiosis terjadi pada...", "Sel kelamin", ["Sel tubuh", "Hati", "Otot", "Sel kelamin"]),
+            ("Struktur penghasil energi sel adalah...", "Mitokondria", ["Nukleus", "Lisosom", "Mitokondria", "RE"]),
+            ("Fungsi ribosom adalah...", "Membuat protein", ["Menghasilkan energi", "Mencerna zat", "Membuat protein", "Transport zat"]),
+        ],
+        # Tambahkan soal Level 2-5 sesuai kebutuhan
+    }
+
+    if level in soal_per_level:
+        tampilkan_kuis(soal_per_level[level])
+    else:
+        st.warning("Level ini belum tersedia. Tunggu update berikutnya.")
