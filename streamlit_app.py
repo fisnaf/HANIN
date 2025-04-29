@@ -10,19 +10,27 @@ menu = st.sidebar.selectbox("Pilih Menu", ["Materi Sel", "Kuis", "Game"])
 # Menu 1: Materi Sel
 if menu == "Materi Sel":
     st.header("Materi: Struktur dan Fungsi Sel")
+
     st.subheader("1. Pengantar Sel")
     st.write("""
-        Sel adalah unit struktural dan fungsional terkecil dari makhluk hidup. Terdapat dua jenis utama sel:
-        - Sel Prokariotik (contoh: bakteri)
-        - Sel Eukariotik (contoh: sel hewan dan tumbuhan)
+        Sel merupakan unit struktural, fungsional, dan biologis terkecil dari semua makhluk hidup. Semua makhluk hidup tersusun atas satu atau lebih sel. Sel mampu melakukan semua fungsi kehidupan seperti metabolisme, pertumbuhan, dan reproduksi.
+
+        Terdapat dua jenis utama sel:
+        - **Sel Prokariotik**: Merupakan sel yang tidak memiliki membran inti sel. Materi genetiknya tersebar di sitoplasma. Contoh organisme prokariotik adalah bakteri dan archaea.
+        - **Sel Eukariotik**: Merupakan sel yang memiliki membran inti. Materi genetiknya tersimpan dalam inti sel (nukleus). Contoh sel eukariotik adalah sel tumbuhan, sel hewan, jamur, dan protista.
     """)
 
     st.subheader("2. Organel-Organel dalam Sel")
-    st.markdown("**Nukleus**: Mengatur aktivitas sel dan menyimpan DNA.")
-    st.markdown("**Mitokondria**: Tempat respirasi sel untuk menghasilkan energi.")
-    st.markdown("**Ribosom**: Sintesis protein.")
-    st.markdown("**Retikulum Endoplasma**: Transportasi dalam sel.")
-    st.markdown("**Aparatus Golgi**: Pengemasan dan pengiriman protein.")
+    st.markdown("**Nukleus**: Nukleus atau inti sel adalah pusat pengendali sel yang menyimpan materi genetik (DNA). Nukleus dilapisi oleh membran inti dan berperan dalam mengatur pertumbuhan, metabolisme, dan reproduksi sel.")
+    st.markdown("**Mitokondria**: Merupakan organel yang menghasilkan energi melalui proses respirasi seluler. Mitokondria sering disebut sebagai 'pembangkit tenaga sel'.")
+    st.markdown("**Ribosom**: Organel kecil yang tersebar di sitoplasma atau menempel pada retikulum endoplasma. Fungsinya adalah untuk menyintesis protein yang dibutuhkan oleh sel.")
+    st.markdown("**Retikulum Endoplasma (RE)**: Terdiri dari dua jenis, yaitu RE kasar (mengandung ribosom) dan RE halus (tidak mengandung ribosom). RE berfungsi dalam transportasi zat dan sintesis lipid serta protein.")
+    st.markdown("**Aparatus Golgi**: Berfungsi untuk memodifikasi, mengemas, dan mengirim protein serta lipid ke bagian lain dari sel atau ke luar sel.")
+    st.markdown("**Lisosom**: Organel yang berisi enzim pencerna. Fungsinya adalah untuk mencerna partikel asing dan menghancurkan organel yang sudah rusak (autofagi). Biasanya ditemukan pada sel hewan.")
+    st.markdown("**Kloroplas**: Organel yang hanya terdapat pada sel tumbuhan dan alga. Mengandung klorofil dan berperan penting dalam proses fotosintesis.")
+    st.markdown("**Vakuola**: Rongga yang berisi cairan. Pada sel tumbuhan, vakuola berukuran besar dan berfungsi untuk menyimpan cadangan makanan, air, dan produk sisa metabolisme.")
+    st.markdown("**Membran Sel**: Struktur semi-permeabel yang mengatur keluar-masuknya zat dari dan ke dalam sel.")
+    st.markdown("**Dinding Sel**: Struktur keras yang melindungi dan memberi bentuk sel. Hanya dimiliki oleh sel tumbuhan dan beberapa mikroorganisme seperti jamur dan bakteri.")
 
 # Menu 2: Kuis
 elif menu == "Kuis":
