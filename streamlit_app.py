@@ -1,4 +1,5 @@
 import streamlit as st
+import random
 
 # Judul aplikasi
 st.title("Pembelajaran Biologi SMA Kelas 11: Sel")
@@ -49,12 +50,35 @@ elif menu == "Kuis":
 # Menu 3: Game
 elif menu == "Game":
     st.header("Game: Tebak Organel")
-    st.write("Pilih organel yang sesuai dengan deskripsi berikut:")
 
-    deskripsi = "Tempat berlangsungnya sintesis protein."
-    jawaban = st.selectbox("Organel apakah ini?", ["Mitokondria", "Ribosom", "Nukleus"])
-    if st.button("Cek Jawaban"):
-        if jawaban == "Ribosom":
-            st.success("Benar! Ribosom berperan dalam sintesis protein.")
-        else:
-            st.error("Salah. Coba lagi!")
+    soal_game = [
+        {
+            "deskripsi": "Tempat berlangsungnya sintesis protein.",
+            "jawaban": "Ribosom",
+            "opsi": ["Mitokondria", "Ribosom", "Nukleus"]
+        },
+        {
+            "deskripsi": "Organel penghasil energi melalui proses respirasi sel.",
+            "jawaban": "Mitokondria",
+            "opsi": ["Mitokondria", "Lisosom", "Aparatus Golgi"]
+        },
+        {
+            "deskripsi": "Tempat penyimpanan materi genetik dan pusat kontrol sel.",
+            "jawaban": "Nukleus",
+            "opsi": ["Retikulum Endoplasma", "Nukleus", "Ribosom"]
+        }
+    ]
+
+    score_game = 0
+    for i, soal in enumerate(soal_game):
+        st.subheader(f"Soal {i+1}")
+        jawaban = st.radio(soal["deskripsi"], soal["opsi"], key=i)
+        if st.button(f"Cek Jawaban Soal {i+1}"):
+            if jawaban == soal["jawaban"]:
+                st.success("Benar!")
+                score_game += 1
+            else:
+                st.error(f"Salah. Jawaban yang benar adalah: {soal['jawaban']}")
+
+    if st.button("Lihat Skor Akhir Game"):
+        st.info(f"Skor akhir kamu di game ini: {score_game} dari {len(soal_game)}")
