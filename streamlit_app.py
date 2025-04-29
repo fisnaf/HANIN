@@ -13,28 +13,30 @@ Tugasmu adalah mengamati ciri-cirinya, lalu menebak apakah itu **Sel Hewan**, **
 cells = [
     {
         "id": 1,
-        "image": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Animal_cell_structure-en.svg",
+        "image": "https://i.imgur.com/BOZbPQF.png",  # Animal cell
         "choices": ["Tidak punya dinding sel", "Ada mitokondria", "Bentuk tidak tetap"],
         "answer": "hewan"
     },
     {
         "id": 2,
-        "image": "https://upload.wikimedia.org/wikipedia/commons/3/30/Plant_cell_structure-en.svg",
+        "image": "https://i.imgur.com/HqqjW1r.png",  # Plant cell
         "choices": ["Ada kloroplas", "Punya dinding sel", "Ada vakuola besar"],
         "answer": "tumbuhan"
     },
     {
         "id": 3,
-        "image": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Prokaryote_cell_diagram.svg",
+        "image": "https://i.imgur.com/X0nPNo0.png",  # Bacteria cell
         "choices": ["Tidak punya inti sel", "Bentuk batang", "Punya pili dan flagela"],
         "answer": "bakteri"
     }
 ]
 
+# Pilih sel secara acak
 sel = random.choice(cells)
-st.image(sel["image"], caption="Perhatikan gambar sel ini!", use_column_width=True)
-st.subheader("Apa ciri-ciri yang kamu lihat?")
 
+# Tampilkan gambar dan pilihan
+st.image(sel["image"], caption="🔬 Perhatikan gambar sel ini!", use_container_width=True)
+st.subheader("Apa ciri-ciri yang kamu lihat?")
 selected = st.multiselect("Pilih semua ciri yang cocok:", sel["choices"])
 
 if selected:
@@ -43,9 +45,9 @@ if selected:
 
     if st.button("Periksa Jawaban"):
         if guess == sel["answer"]:
-            st.success("Tepat! Kamu memang detektif sel yang hebat.")
+            st.success("🎉 Tepat! Kamu memang detektif sel yang hebat.")
             st.balloons()
         else:
-            st.error(f"Belum tepat. Ini sebenarnya adalah sel {sel['answer'].capitalize()}.")
+            st.error(f"❌ Belum tepat. Ini sebenarnya adalah sel **{sel['answer'].capitalize()}**.")
 else:
-    st.info("Pilih dulu ciri-ciri yang kamu amati dari gambar di atas.")
+    st.info("🧭 Pilih dulu ciri-ciri yang kamu amati dari gambar di atas.")
