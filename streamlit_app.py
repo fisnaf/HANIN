@@ -1,21 +1,19 @@
 import streamlit as st
 
-st.set_page_config(page_title="Simulasi Posisi Organel", layout="centered")
-st.title("🎯 Letakkan Organel ke Tempat yang Benar (Simulasi)")
+st.set_page_config(page_title="Sintesis Protein", layout="centered")
+st.title("🧬 Simulasi Sintesis Protein")
 
-organel_lokasi = {
-    "Nukleus": st.selectbox("Dimana letak Nukleus?", ["Di tengah", "Di pinggir", "Tidak ada"]),
-    "Kloroplas": st.selectbox("Dimana letak Kloroplas?", ["Dekat dinding sel", "Di tengah", "Tidak ada"]),
-    "Ribosom": st.selectbox("Dimana letak Ribosom?", ["Menempel RE", "Di dalam nukleus", "Tidak ada"])
-}
+steps = [
+    "1. DNA membuka gulungannya di inti sel.",
+    "2. mRNA disalin dari DNA (transkripsi).",
+    "3. mRNA keluar menuju ribosom.",
+    "4. Ribosom membaca mRNA dan mulai menyusun protein (translasi).",
+    "5. Protein dikirim melalui Retikulum Endoplasma dan dikemas oleh Badan Golgi."
+]
 
-if st.button("Periksa Jawaban"):
-    benar = 0
-    if organel_lokasi["Nukleus"] == "Di tengah":
-        benar += 1
-    if organel_lokasi["Kloroplas"] == "Dekat dinding sel":
-        benar += 1
-    if organel_lokasi["Ribosom"] == "Menempel RE":
-        benar += 1
+step = st.slider("Langkah ke-", 1, len(steps), 1)
+st.info(steps[step-1])
 
-    st.success(f"Kamu benar: {benar}/3")
+if st.button("Lihat Semua Langkah"):
+    for i in steps:
+        st.markdown(f"- {i}")
