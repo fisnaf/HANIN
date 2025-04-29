@@ -1,73 +1,48 @@
 import streamlit as st
-from PIL import Image
 
-st.set_page_config(page_title="Eksplorasi Interaktif Sel", layout="wide")
+st.set_page_config(page_title="Escape Room: Jelajahi Dunia Sel", layout="wide")
 
-st.title("🔬 Eksplorasi Interaktif Sel untuk SMA Kelas 11")
+st.title("🧬 Escape Room: Jelajahi Dunia Sel")
 st.markdown("""
-Aplikasi ini membantu siswa memahami struktur dan fungsi bagian-bagian sel melalui visualisasi interaktif, simulasi, dan kuis.
+Kamu terjebak di dalam sebuah sel! Untuk keluar, kamu harus memecahkan teka-teki yang berkaitan dengan struktur dan fungsi organel.
+Setiap jawaban benar akan membawamu lebih dekat ke pintu keluar!
 """)
 
-# Tab Navigation
-tab1, tab2, tab3 = st.tabs(["Struktur Sel", "Simulasi", "Kuis"])
+# Level 1: Pintu Nukleus
+st.header("Level 1: Pintu Nukleus")
+q1 = st.text_input("Aku adalah pusat pengendali semua aktivitas dalam sel. Siapakah aku?").strip().lower()
+if q1:
+    if "nukleus" in q1:
+        st.success("Benar! Kamu telah membuka pintu pertama dan memasuki sitoplasma...")
 
-# === TAB 1: Struktur Sel ===
-with tab1:
-    st.header("Struktur Sel Tumbuhan dan Hewan")
+        # Level 2: Mitokondria
+        st.header("Level 2: Mitokondria")
+        q2 = st.text_input("Aku menghasilkan energi untuk sel, bagaikan pembangkit tenaga. Siapakah aku?").strip().lower()
+        if q2:
+            if "mitokondria" in q2:
+                st.success("Bagus! Energi kamu cukup untuk melanjutkan ke organel berikutnya...")
 
-    jenis_sel = st.radio("Pilih jenis sel:", ["Sel Hewan", "Sel Tumbuhan"], horizontal=True)
+                # Level 3: Ribosom
+                st.header("Level 3: Ribosom")
+                q3 = st.text_input("Aku membantu membuat protein. Aku bisa bebas atau menempel di RE kasar. Siapakah aku?").strip().lower()
+                if q3:
+                    if "ribosom" in q3:
+                        st.success("Hebat! Protein sudah cukup untuk bertahan hidup...")
 
-    if jenis_sel == "Sel Hewan":
-        image_path = "assets/cell_animal.png"
+                        # Level 4: Gerbang Membran Sel
+                        st.header("Level 4: Gerbang Membran Sel")
+                        q4 = st.text_input("Aku menjaga keluar masuknya zat. Aku adalah pelindung utama sel. Siapakah aku?").strip().lower()
+                        if q4:
+                            if "membran sel" in q4 or "membran" in q4:
+                                st.balloons()
+                                st.success("Selamat! Kamu berhasil keluar dari sel! Sekarang kamu bebas!")
+                            else:
+                                st.error("Jawaban belum tepat. Coba lagi!")
+                    else:
+                        st.error("Jawaban kurang tepat. Coba lagi!")
+            else:
+                st.error("Bukan itu organelnya. Coba lagi!")
     else:
-        image_path = "assets/cell_plant.png"
-
-    img = Image.open(image_path)
-    st.image(img, caption=jenis_sel, use_column_width=True)
-
-    organel = st.selectbox("Pilih bagian sel untuk melihat penjelasannya:",
-                           ["Nukleus", "Mitokondria", "Ribosom", "Retikulum Endoplasma", "Aparatus Golgi", "Lisosom", "Kloroplas", "Dinding Sel", "Membran Sel"])
-
-    penjelasan = {
-        "Nukleus": "Nukleus mengandung DNA dan mengatur aktivitas sel.",
-        "Mitokondria": "Mitokondria menghasilkan energi dalam bentuk ATP melalui respirasi seluler.",
-        "Ribosom": "Ribosom berperan dalam sintesis protein.",
-        "Retikulum Endoplasma": "Tempat sintesis dan transportasi protein dan lipid.",
-        "Aparatus Golgi": "Memodifikasi, mengemas, dan mengirim protein.",
-        "Lisosom": "Mengandung enzim untuk mencerna materi yang tidak dibutuhkan.",
-        "Kloroplas": "Tempat terjadinya fotosintesis (hanya ada di sel tumbuhan).",
-        "Dinding Sel": "Memberi bentuk dan perlindungan pada sel tumbuhan.",
-        "Membran Sel": "Mengatur keluar masuknya zat ke dalam dan luar sel."
-    }
-
-    if organel in penjelasan:
-        st.success(penjelasan[organel])
-
-# === TAB 2: Simulasi ===
-with tab2:
-    st.header("Simulasi Proses dalam Sel")
-    st.subheader("Simulasi Osmosis")
-
-    st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Osmosis.svg/512px-Osmosis.svg.png",
-             caption="Simulasi pergerakan air dari larutan hipotonik ke hipertonik melalui membran semipermeabel.",
-             use_column_width=True)
-
-    st.markdown("""
-    - **Hipotonik**: Konsentrasi zat terlarut rendah, air masuk ke sel.
-    - **Hipertonik**: Konsentrasi zat terlarut tinggi, air keluar dari sel.
-    - **Isotonik**: Konsentrasi seimbang, tidak ada pergerakan bersih air.
-    """)
-
-# === TAB 3: Kuis ===
-with tab3:
-    st.header("Kuis Interaktif")
-    st.markdown("Jawablah pertanyaan berikut untuk menguji pemahamanmu.")
-
-    pertanyaan = st.radio("Organel apa yang berfungsi sebagai pusat pengendali sel?",
-                          ["Mitokondria", "Nukleus", "Ribosom"])
-
-    if st.button("Cek Jawaban"):
-        if pertanyaan == "Nukleus":
-            st.success("Benar! Nukleus adalah pusat pengendali sel.")
-        else:
-            st.error("Jawaban kurang tepat. Coba lagi!")
+        st.error("Masih salah. Coba pikirkan siapa yang mengatur sel!")
+else:
+    st.info("Masukkan jawabanmu untuk mulai permainan.")
