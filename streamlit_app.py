@@ -35,7 +35,7 @@ cells = [
 sel = random.choice(cells)
 
 # Tampilkan gambar dan pilihan
-st.image(sel["image"], caption="🔬 Perhatikan gambar sel ini!", use_container_width=True)
+st.image(sel["image"], caption="🔬 Perhatikan gambar sel ini!", width=500)
 st.subheader("Apa ciri-ciri yang kamu lihat?")
 selected = st.multiselect("Pilih semua ciri yang cocok:", sel["choices"])
 
