@@ -1,10 +1,8 @@
 import streamlit as st
 
-# Konfigurasi halaman
 st.set_page_config(page_title="Belajar Sel - Biologi SMA", layout="wide")
 st.title("Platform Belajar Interaktif - Materi Sel Biologi Kelas 11")
 
-# Sidebar menu
 menu = st.sidebar.radio("Pilih Menu", ["Materi", "Kuis"])
 
 if menu == "Materi":
@@ -31,9 +29,9 @@ if menu == "Materi":
 
     elif subbab == "Teori Sel":
         st.subheader("Teori Sel")
-        st.write(\"\"\"1. Sel adalah unit struktural semua makhluk hidup.
+        st.write("""1. Sel adalah unit struktural semua makhluk hidup.
 2. Sel adalah unit fungsional terkecil kehidupan.
-3. Semua sel berasal dari sel yang sudah ada sebelumnya.\"\"\")
+3. Semua sel berasal dari sel yang sudah ada sebelumnya.""")
 
     elif subbab == "Perbedaan Prokariotik dan Eukariotik":
         st.subheader("Perbedaan Prokariotik dan Eukariotik")
@@ -49,12 +47,12 @@ if menu == "Materi":
 
     elif subbab == "Organel-organel Sel":
         st.subheader("Organel-organel Sel dan Fungsinya")
-        st.write(\"\"\"- Nukleus: Mengontrol aktivitas sel
+        st.write("""- Nukleus: Mengontrol aktivitas sel
 - Mitokondria: Respirasi sel
 - Ribosom: Sintesis protein
 - RE: Transportasi zat
 - Badan Golgi: Modifikasi dan pengemasan protein
-- Lisosom: Pencernaan intraseluler\"\"\")
+- Lisosom: Pencernaan intraseluler""")
 
     elif subbab == "Transportasi Membran":
         st.subheader("Transportasi Membran")
@@ -62,8 +60,8 @@ if menu == "Materi":
 
     elif subbab == "Pembelahan Sel (Mitosis & Meiosis)":
         st.subheader("Pembelahan Sel")
-        st.write(\"\"\"- Mitosis: pertumbuhan & perbaikan
-- Meiosis: pembentukan gamet dengan pengurangan jumlah kromosom.\"\"\")
+        st.write("""- Mitosis: pertumbuhan & perbaikan
+- Meiosis: pembentukan gamet dengan pengurangan jumlah kromosom.""")
 
     elif subbab == "Sintesis Protein":
         st.subheader("Sintesis Protein")
@@ -75,15 +73,11 @@ elif menu == "Kuis":
 
     def tampilkan_kuis(soal_list):
         score = 0
-        jawaban_benar = []
         for i, (soal, benar, pilihan) in enumerate(soal_list):
             st.markdown(f"**{i+1}. {soal}**")
             jawaban = st.radio("Jawaban kamu:", pilihan, key=i)
             if jawaban == benar:
                 score += 1
-                jawaban_benar.append(True)
-            else:
-                jawaban_benar.append(False)
 
         if st.button("Submit Jawaban"):
             st.success(f"Skor kamu: {score}/{len(soal_list)}")
@@ -106,7 +100,7 @@ elif menu == "Kuis":
             ("Struktur penghasil energi sel adalah...", "Mitokondria", ["Nukleus", "Lisosom", "Mitokondria", "RE"]),
             ("Fungsi ribosom adalah...", "Membuat protein", ["Menghasilkan energi", "Mencerna zat", "Membuat protein", "Transport zat"]),
         ],
-        # Tambahkan soal Level 2-5 sesuai kebutuhan
+        # Level 2-5 bisa ditambahkan di sini nanti
     }
 
     if level in soal_per_level:
