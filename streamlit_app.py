@@ -1,60 +1,98 @@
 import streamlit as st
 
-st.set_page_config(page_title="Kuis Interaktif Sel", layout="centered")
+# Halaman utama
+st.set_page_config(page_title="Belajar Sel - Biologi SMA", layout="wide")
+st.title("Platform Belajar Interaktif - Materi Sel Biologi Kelas 11")
 
-st.title("Kuis Interaktif: Yuk, Uji Pengetahuanmu tentang Sel!")
+menu = st.sidebar.radio("Pilih Menu", ["Materi", "Kuis"])
 
-# Simpan skor dan nomor soal dengan session state
-if 'score' not in st.session_state:
-    st.session_state.score = 0
-if 'question_number' not in st.session_state:
-    st.session_state.question_number = 0
+if menu == "Materi":
+    st.header("Materi Tentang Sel")
+    subbab = st.selectbox("Pilih Sub-Bab", [
+        "Pengertian Sel",
+        "Sejarah Penemuan Sel",
+        "Teori Sel",
+        "Perbedaan Prokariotik dan Eukariotik",
+        "Struktur Sel Tumbuhan dan Hewan",
+        "Organel-organel Sel",
+        "Transportasi Membran",
+        "Pembelahan Sel (Mitosis & Meiosis)",
+        "Sintesis Protein"
+    ])
 
-questions = [
-    {
-        "soal": "Apa fungsi utama dari mitokondria?",
-        "opsi": ["Mengendalikan aktivitas sel", "Menyimpan informasi genetik", "Menghasilkan energi", "Membentuk protein"],
-        "jawaban": "Menghasilkan energi"
-    },
-    {
-        "soal": "Struktur sel apa yang menyimpan materi genetik?",
-        "opsi": ["Ribosom", "Nukleus", "RE Kasar", "Membran sel"],
-        "jawaban": "Nukleus"
-    },
-    {
-        "soal": "Organel manakah yang berfungsi untuk sintesis protein?",
-        "opsi": ["Mitokondria", "Lisosom", "Ribosom", "Badan Golgi"],
-        "jawaban": "Ribosom"
-    },
-    {
-        "soal": "Apa fungsi Retikulum Endoplasma Halus?",
-        "opsi": ["Membentuk protein", "Membentuk lipid", "Menghasilkan energi", "Mencerna zat asing"],
-        "jawaban": "Membentuk lipid"
-    }
-]
+    if subbab == "Pengertian Sel":
+        st.subheader("Pengertian Sel")
+        st.write("""
+        Sel adalah unit struktural dan fungsional terkecil dari makhluk hidup.
+        Semua makhluk hidup terdiri atas satu atau lebih sel.
+        """)
 
-def tampilkan_soal(nomor):
-    soal = questions[nomor]
-    st.subheader(f"Soal {nomor + 1}")
-    jawaban = st.radio(soal["soal"], soal["opsi"], key=nomor)
-    if st.button("Kunci Jawaban", key=f"kunci_{nomor}"):
-        if jawaban == soal["jawaban"]:
-            st.success("Jawaban kamu benar!")
-            st.session_state.score += 1
-        else:
-            st.error(f"Ups, jawaban yang benar: {soal['jawaban']}")
-        st.session_state.question_number += 1
+    elif subbab == "Sejarah Penemuan Sel":
+        st.subheader("Sejarah Penemuan Sel")
+        st.write("""
+        Konsep sel pertama kali ditemukan oleh Robert Hooke pada tahun 1665.
+        Ia mengamati irisan tipis gabus dengan mikroskop dan melihat struktur kotak-kotak.
+        """)
 
-# Tampilkan soal satu per satu
-if st.session_state.question_number < len(questions):
-    tampilkan_soal(st.session_state.question_number)
-else:
-    st.balloons()
-    st.subheader("Kuis selesai!")
-    st.write(f"Skor akhir kamu: {st.session_state.score} dari {len(questions)}")
-    if st.button("Ulangi kuis"):
-        st.session_state.score = 0
-        st.session_state.question_number = 0
+    elif subbab == "Teori Sel":
+        st.subheader("Teori Sel")
+        st.write("""
+        1. Sel adalah unit struktural semua makhluk hidup.
+        2. Sel adalah unit fungsional terkecil kehidupan.
+        3. Semua sel berasal dari sel yang sudah ada sebelumnya.
+        """)
 
-st.markdown("---")
-st.caption("Zafindo Edu | Belajar seru tanpa stres!")
+    elif subbab == "Perbedaan Prokariotik dan Eukariotik":
+        st.subheader("Perbedaan Prokariotik dan Eukariotik")
+        st.write("""
+        | Ciri-ciri | Sel Prokariotik | Sel Eukariotik |
+        |-----------|------------------|------------------|
+        | Inti Sel  | Tidak ada        | Ada              |
+        | Organel   | Tidak kompleks   | Kompleks         |
+        | Contoh    | Bakteri          | Hewan, Tumbuhan  |
+        """)
+
+    elif subbab == "Struktur Sel Tumbuhan dan Hewan":
+        st.subheader("Struktur Sel Tumbuhan dan Hewan")
+        st.write("""
+        Sel tumbuhan memiliki dinding sel dan kloroplas, sedangkan sel hewan tidak.
+        Sel hewan memiliki sentriol yang tidak dimiliki sel tumbuhan.
+        """)
+
+    elif subbab == "Organel-organel Sel":
+        st.subheader("Organel-organel Sel dan Fungsinya")
+        st.write("""
+        - Nukleus: Mengontrol aktivitas sel
+        - Mitokondria: Respirasi sel
+        - Ribosom: Sintesis protein
+        - Retikulum endoplasma: Transportasi zat
+        - Badan Golgi: Modifikasi dan pengemasan protein
+        - Lisosom: Pencernaan intraseluler
+        """)
+
+    elif subbab == "Transportasi Membran":
+        st.subheader("Transportasi Membran")
+        st.write("""
+        Transportasi membran meliputi difusi, osmosis, transport aktif, dan endositosis.
+        """)
+
+    elif subbab == "Pembelahan Sel (Mitosis & Meiosis)":
+        st.subheader("Pembelahan Sel")
+        st.write("""
+        - Mitosis: untuk pertumbuhan dan regenerasi
+        - Meiosis: untuk pembentukan gamet
+        """)
+
+    elif subbab == "Sintesis Protein":
+        st.subheader("Sintesis Protein")
+        st.write("""
+        Proses dimulai dari transkripsi (DNA ke mRNA) lalu translasi (mRNA ke protein).
+        """)
+
+elif menu == "Kuis":
+    st.header("Kuis Interaktif Biologi - Materi Sel")
+    st.write("Silakan pilih level untuk memulai kuis.")
+    # Placeholder untuk level kuis
+    level = st.selectbox("Pilih Level", ["Level 1", "Level 2", "Level 3", "Level 4", "Level 5"])
+
+    st.info("Fitur kuis akan segera ditambahkan dengan total 50 soal dan penilaian per level.")
