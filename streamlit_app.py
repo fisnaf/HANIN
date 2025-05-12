@@ -4,8 +4,7 @@ import math
 def calculate_sampling_points(diameter_cm, height_m):
 diameter_m = diameter_cm / 100 # Convert cm to meters
 if diameter_m <= 0 or height_m <= 0:
-return None, "Diameter dan tinggi cerobong harus lebih
-besar dari nol."
+return None, "Diameter dan tinggi cerobong harus lebih besar dari nol."
 if diameter_m < 0.6:
 return None, "Diameter terlalu kecil untuk sampling yang
 akurat."
