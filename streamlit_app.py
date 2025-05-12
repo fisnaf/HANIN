@@ -81,8 +81,7 @@ Kelompok 5:
 """
 )
 elif menu == 'Pengertian Titik Sampling':
-bold_black_header('Pengertian Titik Sampling pada
-Cerobong')
+bold_black_header('Pengertian Titik Sampling pada Cerobong')
 st.write(
 """\
 Penentuan titik sampling pada cerobong adalah proses
@@ -97,8 +96,7 @@ diandalkan.
 """
 )
 elif menu == 'Penjelasan Baku Mutu':
-bold_black_header('Penjelasan Baku Mutu Berdasarkan SNI
-7117.13:2009')
+bold_black_header('Penjelasan Baku Mutu Berdasarkan SNI 7117.13:2009')
 st.write(
 """\
 Baku mutu berdasarkan SNI 7117.13:2009 mengatur cara
