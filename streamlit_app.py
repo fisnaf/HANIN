@@ -6,8 +6,7 @@ diameter_m = diameter_cm / 100 # Convert cm to meters
 if diameter_m <= 0 or height_m <= 0:
 return None, "Diameter dan tinggi cerobong harus lebih besar dari nol."
 if diameter_m < 0.6:
-return None, "Diameter terlalu kecil untuk sampling yang
-akurat."
+return None, "Diameter terlalu kecil untuk sampling yang akurat."
 # Panduan umum untuk titik sampling
 if diameter_m <= 2.5:
 points = 3
