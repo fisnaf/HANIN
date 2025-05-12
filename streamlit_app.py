@@ -147,7 +147,6 @@ st.write(error_message)
 else:
 spacing_per_point =
 calculate_spacing_per_point(diameter_cm, points)
-st.write(f'Jumlah titik sampling yang direkomendasikan:
-{points}')
+st.write(f'Jumlah titik sampling yang direkomendasikan:{points}')
 st.write(f'Jarak antar titik sampling per titik (sekitar):
 {spacing_per_point:.2f} cm')
