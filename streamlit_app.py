@@ -18,8 +18,7 @@ elif diameter_m <= 15:
 points = 8
 else:
 points = 12
-# Tambahan untuk tinggi cerobong (untuk menghindari aliran
-yang tidak seragam)
+# Tambahan untuk tinggi cerobong (untuk menghindari aliran yang tidak seragam)
 if height_m > 20:
 points += 2
 return points, None
@@ -28,8 +27,7 @@ def calculate_spacing_per_point(diameter_cm, points):
 return diameter_cm / points
 
 # Streamlit UI
-st.set_page_config(page_title="Perhitungan Titik Sampling
-Cerobong", layout="wide")
+st.set_page_config(page_title="Perhitungan Titik Sampling Cerobong", layout="wide")
 # Tambahkan CSS untuk latar belakang gambar dan teks hitam,
 termasuk header
 page_bg_img = """
