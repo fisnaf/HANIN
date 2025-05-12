@@ -65,8 +65,7 @@ menu = st.sidebar.radio('Pilih Menu', ['Selamat Datang',
 'Pengertian Titik Sampling', 'Penjelasan Baku Mutu', 'Perhitungan dan Hasil'])
 # Fungsi untuk membuat header dengan garis tebal hitam
 def bold_black_header(text):
-st.markdown(f"<h2 style='border-bottom: 4px solid black;
-color: black;'>{text}</h2>", unsafe_allow_html=True)
+st.markdown(f"<h2 style='border-bottom: 4px solid black; color: black;'>{text}</h2>", unsafe_allow_html=True)
 if menu == 'Selamat Datang':
 bold_black_header('Selamat Datang')
 st.write(
