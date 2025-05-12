@@ -29,8 +29,6 @@ return points, None
 def calculate_spacing_per_point(diameter_cm, points):
 return diameter_cm / points
 
-8
-
 # Streamlit UI
 st.set_page_config(page_title="Perhitungan Titik Sampling
 Cerobong", layout="wide")
@@ -64,12 +62,8 @@ border-bottom: 4px solid black;
 }
 </style>
 """
-
 st.markdown(page_bg_img, unsafe_allow_html=True)
 # Sidebar menu
-
-9
-
 st.sidebar.title('Menu')
 menu = st.sidebar.radio('Pilih Menu', ['Selamat Datang',
 'Pengertian Titik Sampling', 'Penjelasan Baku Mutu', 'Perhitungan
@@ -103,9 +97,6 @@ penting dalam pengukuran emisi gas dari cerobong industri.
 Titik-titik ini ditentukan untuk memastikan bahwa sampel
 yang diambil representatif dari keseluruhan aliran gas.
 Secara umum, titik sampling harus didistribusikan secara
-
-10
-
 merata pada penampang cerobong dan pada area yang mewakili
 aliran gas di cerobong. Pemilihan titik sampling yang tepat
 sangat penting untuk mendapatkan hasil yang akurat dan dapat
@@ -140,9 +131,6 @@ diameter cerobong dan jumlah titik sampling.
 representatif dan tidak saling tumpang tindih.
 4. Ketinggian Pengambilan Sampel:
 - Titik sampling pada cerobong harus diambil pada
-
-11
-
 ketinggian yang mewakili aliran gas secara keseluruhan.
 - Biasanya tidak lebih dari 1/3 atau 1/2 dari tinggi
 cerobong.
