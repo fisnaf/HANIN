@@ -7,7 +7,8 @@ st.set_page_config(page_title="Kalkulator Efisiensi IPAL", layout="wide")
 page_bg_img = """
 <style>
 [data-testid="stAppViewContainer"] {
-background-image: url("https://images.unsplash.com/photo-1581090124904-43b6b56c9f9d"); 
+background-image: url("https://images.unsplash.com/photo-1582560470094-84f1aa6705b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80");
+
 background-size: cover;
 background-position: center;
 background-attachment: fixed;
