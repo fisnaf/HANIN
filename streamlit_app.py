@@ -137,12 +137,10 @@ terlatih.
 elif menu == 'Perhitungan dan Hasil':
 bold_black_header('Perhitungan dan Hasil Titik Sampling')
 # Input dari pengguna
-diameter_cm = st.number_input('Masukkan diameter cerobong
-(cm):', min_value=0.0)
+diameter_cm = st.number_input('Masukkan diameter cerobong (cm):', min_value=0.0)
 height_m = st.number_input('Masukkan tinggi cerobong
 (meter):', min_value=0.0)
-if st.button('Hitung Jumlah Titik Sampling dan Jarak Antar
-Titik'):
+if st.button('Hitung Jumlah Titik Sampling dan Jarak Antar Titik'):
 points, error_message =
 calculate_sampling_points(diameter_cm, height_m)
 if error_message:
