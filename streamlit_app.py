@@ -1,39 +1,9 @@
 import streamlit as st
 
-# Fungsi untuk menghitung jumlah titik sampling
-def calculate_sampling_points(diameter_cm, height_m):
-    diameter_m = diameter_cm / 100  # Convert cm to meters
-    if diameter_m <= 0 or height_m <= 0:
-        return None, "Diameter dan tinggi cerobong harus lebih besar dari nol."
-    if diameter_m < 0.6:
-        return None, "Diameter terlalu kecil untuk sampling yang akurat."
+# Konfigurasi tampilan halaman
+st.set_page_config(page_title="Kalkulator Efisiensi IPAL", layout="wide")
 
-    # Panduan umum untuk titik sampling
-    if diameter_m <= 2.5:
-        points = 3
-    elif diameter_m <= 5:
-        points = 4
-    elif diameter_m <= 10:
-        points = 6
-    elif diameter_m <= 15:
-        points = 8
-    else:
-        points = 12
-
-    # Tambahan untuk tinggi cerobong
-    if height_m > 20:
-        points += 2
-
-    return points, None
-
-# Fungsi untuk menghitung jarak antar titik sampling per titik
-def calculate_spacing_per_point(diameter_cm, points):
-    return diameter_cm / points
-
-# Streamlit UI
-st.set_page_config(page_title="Perhitungan Titik Sampling Cerobong", layout="wide")
-
-# Tambahkan CSS untuk latar belakang gambar dan teks hitam, termasuk header
+# CSS latar belakang dan gaya tampilan
 page_bg_img = """
 <style>
 [data-testid="stAppViewContainer"] {
@@ -51,9 +21,6 @@ color: white;
 .stMarkdown {
 color: black;
 }
-.stNumberInput div {
-color: white;
-}
 h2 {
 color: black;
 border-bottom: 4px solid black;
@@ -64,63 +31,85 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 
 # Sidebar menu
 st.sidebar.title('Menu')
-menu = st.sidebar.radio('Pilih Menu', ['Selamat Datang',
-'Pengertian Titik Sampling', 'Penjelasan Baku Mutu', 'Perhitungan dan Hasil'])
+menu = st.sidebar.radio('Pilih Menu', ['Beranda', 'Penjelasan IPAL', 'Perhitungan Efisiensi'])
 
-# Fungsi untuk membuat header dengan garis tebal hitam
+# Fungsi untuk judul hitam bergaris
 def bold_black_header(text):
     st.markdown(f"<h2 style='border-bottom: 4px solid black; color: black;'>{text}</h2>", unsafe_allow_html=True)
 
-# Menu Tampilan
-if menu == 'Selamat Datang':
-    bold_black_header('Selamat Datang')
-    st.write(
-        """\
-Selamat datang di aplikasi perhitungan titik sampling pada cerobong.
-Kelompok 5:
-1. Alvina Adinda Putri (2330484)
-2. Azzahra Aulia Putri (2330492)
-3. Fadhil Zhafran Ramadhani (2330497)
-4. Landi Hidayat (2330507)
-5. Muhammad Fadhil Khoirurrizal (2150016)
-6. Sabrina Putri Faradhilla (2330528)
-"""
-    )
+# Menu: Beranda
+if menu == 'Beranda':
+    bold_black_header('Selamat Datang di Kalkulator IPAL')
+    st.write("""
+Aplikasi ini membantu Anda memahami konsep Instalasi Pengolahan Air Limbah (IPAL) dan menghitung efisiensi pengolahannya.
 
-elif menu == 'Pengertian Titik Sampling':
-    bold_black_header('Pengertian Titik Sampling pada Cerobong')
-    st.write(
-        """\
-Penentuan titik sampling pada cerobong adalah proses penting dalam pengukuran emisi gas dari cerobong industri.
-Titik-titik ini ditentukan untuk memastikan bahwa sampel yang diambil representatif dari keseluruhan aliran gas.
-"""
-    )
+Dibuat oleh:
+- Syarif Nafis & Tim (2025)
 
-elif menu == 'Penjelasan Baku Mutu':
-    bold_black_header('Penjelasan Baku Mutu Berdasarkan SNI 7117.13:2009')
-    st.write(
-        """\
-Baku mutu berdasarkan SNI 7117.13:2009 mengatur cara pengambilan sampel untuk pengukuran emisi dari cerobong industri.
-Berikut adalah poin-poin penting:
-1. Jumlah Titik Sampling:
-- Diameter ≤ 0.6 m: 1 titik
-- Diameter > 0.6 m dan ≤ 2.5 m: 3 titik
-- Diameter > 2.5 m dan ≤ 5 m: 4 titik
-- Diameter > 5 m dan ≤ 10 m: 6 titik
-- Diameter > 10 m: 8 titik atau lebih
-"""
-    )
+Silakan gunakan menu di sebelah kiri untuk mulai mengeksplorasi.
+""")
 
-elif menu == 'Perhitungan dan Hasil':
-    bold_black_header('Perhitungan dan Hasil Titik Sampling')
-    diameter_cm = st.number_input('Masukkan diameter cerobong (cm):', min_value=0.0)
-    height_m = st.number_input('Masukkan tinggi cerobong (meter):', min_value=0.0)
+# Menu: Penjelasan IPAL
+elif menu == 'Penjelasan IPAL':
+    bold_black_header("📚 Pendahuluan")
+    st.write("""
+Instalasi Pengolahan Air Limbah (IPAL) adalah sistem yang dirancang untuk mengolah air limbah agar aman dibuang ke lingkungan atau digunakan kembali. IPAL penting untuk menjaga kualitas air dan kesehatan lingkungan.
 
-    if st.button('Hitung Jumlah Titik Sampling dan Jarak Antar Titik'):
-        points, error_message = calculate_sampling_points(diameter_cm, height_m)
-        if error_message:
-            st.write(error_message)
+Efisiensi IPAL mengukur seberapa besar kemampuan instalasi dalam menurunkan polutan dari air limbah.
+""")
+
+    bold_black_header("🔎 Inlet dan Outlet")
+    st.write("""
+- **Inlet**: Titik masuk air limbah, biasanya konsentrasi polutan tinggi.
+- **Outlet**: Titik keluarnya air setelah diolah, seharusnya konsentrasi lebih rendah.
+
+Perbandingan antara inlet dan outlet digunakan untuk menghitung efisiensi.
+""")
+
+    bold_black_header("🧮 Rumus Perhitungan")
+    st.latex(r'''
+    \text{Efisiensi (\%)} = \frac{C_{\text{inlet}} - C_{\text{outlet}}}{C_{\text{inlet}}} \times 100
+    ''')
+    st.markdown("""
+- \( C_{\text{inlet}} \): Konsentrasi polutan inlet (mg/L)  
+- \( C_{\text{outlet}} \): Konsentrasi polutan outlet (mg/L)
+""")
+
+    bold_black_header("📊 Parameter Evaluasi")
+    st.write("""
+- **BOD**: Permintaan oksigen oleh mikroorganisme.
+- **COD**: Permintaan oksigen total untuk oksidasi.
+- **pH**: Tingkat keasaman/basaan.
+- **TSS**: Jumlah padatan tersuspensi.
+
+Evaluasi ini berguna untuk:
+- Memastikan kepatuhan regulasi.
+- Menilai efektivitas proses.
+- Menyusun strategi peningkatan efisiensi.
+""")
+
+# Menu: Perhitungan Efisiensi
+elif menu == 'Perhitungan Efisiensi':
+    bold_black_header("🛠️ Hitung Efisiensi IPAL Anda")
+    c_inlet = st.number_input("Masukkan konsentrasi polutan inlet (mg/L)", min_value=0.0, step=0.1)
+    c_outlet = st.number_input("Masukkan konsentrasi polutan outlet (mg/L)", min_value=0.0, step=0.1)
+
+    if st.button("Hitung Efisiensi"):
+        if c_inlet <= 0:
+            st.error("Konsentrasi inlet harus lebih dari 0.")
+        elif c_outlet > c_inlet:
+            st.error("Konsentrasi outlet tidak boleh lebih besar dari inlet.")
         else:
-            spacing_per_point = calculate_spacing_per_point(diameter_cm, points)
-            st.write(f'Jumlah titik sampling yang direkomendasikan: {points}')
-            st.write(f'Jarak antar titik sampling per titik (sekitar): {spacing_per_point:.2f} cm')
+            efisiensi = ((c_inlet - c_outlet) / c_inlet) * 100
+            st.success(f"Efisiensi IPAL adalah {efisiensi:.2f}%")
+            if efisiensi >= 90:
+                st.balloons()
+                st.info("Kinerja IPAL: Sangat Baik ✅")
+            elif efisiensi >= 70:
+                st.info("Kinerja IPAL: Cukup Baik ✅")
+            else:
+                st.warning("Kinerja IPAL: Perlu Ditingkatkan ⚠️")
+
+    st.markdown("---")
+    st.caption("© 2025 | Edukasi IPAL untuk Pengolahan Limbah Industri")
+
