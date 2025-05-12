@@ -62,8 +62,7 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 # Sidebar menu
 st.sidebar.title('Menu')
 menu = st.sidebar.radio('Pilih Menu', ['Selamat Datang',
-'Pengertian Titik Sampling', 'Penjelasan Baku Mutu', 'Perhitungan
-dan Hasil'])
+'Pengertian Titik Sampling', 'Penjelasan Baku Mutu', 'Perhitungan dan Hasil'])
 # Fungsi untuk membuat header dengan garis tebal hitam
 def bold_black_header(text):
 st.markdown(f"<h2 style='border-bottom: 4px solid black;
@@ -72,8 +71,7 @@ if menu == 'Selamat Datang':
 bold_black_header('Selamat Datang')
 st.write(
 """\
-Selamat datang di aplikasi perhitungan titik sampling pada
-cerobong.
+Selamat datang di aplikasi perhitungan titik sampling pada cerobong.
 Kelompok 5:
 1. Alvina Adinda Putri (2330484)
 2. Azzahra Aulia Putri (2330492)
